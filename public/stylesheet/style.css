@@ -1,0 +1,214 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  height: 100vh;
+}
+
+/*flexbox : 부모요소에 display: flex를 적용 후 자식 요소의 배치를 정하는 레이아웃 시스템
+justify-content : center -> 수평 중앙 배치
+align-items : center -> 수직 중앙 배치 */
+#main-page {
+  width: 750px;
+  height: 710px;
+  padding: 50px;
+  border-radius: 8px;
+  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+}
+
+.main-text {
+  font-size: 36px;
+  font-weight: 700;
+  /* font-weight: bold; */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.new-todo {
+  background-color: #f5f7fa;
+  padding: 34px 20px 20px 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+}
+
+.new-todo h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.text-box {
+  width: calc(100% - 20px);
+  height: 16px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #c3c1e5;
+  border-radius: 5px;
+}
+
+.add-btn {
+  width: 70px;
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block; /* 버튼을 블록 요소로 변경 */
+  margin: 20px auto 0 auto; /*위부터 시계방향 */
+}
+
+.add-btn:hover {
+  background-color: #0056b3;
+}
+
+.search-form {
+  width: 759px;
+  height: 38px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #c3c1e5;
+  border-radius: 5px;
+}
+
+.search-btn {
+  width: 70px;
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.search-btn:hover {
+  background-color: #0056b3;
+}
+
+.date {
+  list-style-type: none;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  margin-top: 30px;
+  color: black;
+}
+
+.todo-item {
+  display: flex; /* 자식 요소들을 가로로 배치 */
+  justify-content: space-between; /* 요소 사이에 공간을 균등하게 배치 */
+  align-items: center; /* 요소들을 수직으로 가운데 정렬 */
+  padding: 10px; /* 요소에 적당한 패딩 추가 */
+  border-bottom: 1px solid #c3c1e5; /* 각 항목 구분을 위한 밑줄 추가 */
+}
+
+.todo-item-content {
+  flex-grow: 1; /* 가능한 공간을 모두 차지하도록 설정 */
+}
+
+.edit-btn {
+  display: flex; /* 수정 및 삭제 버튼을 가로로 배치 */
+  gap: 10px; /* 버튼 사이에 간격 추가 */
+}
+
+.edit-btn button {
+  background: none; /* 기본 버튼 배경 제거 */
+  border: none; /* 기본 버튼 테두리 제거 */
+}
+
+.edit-btn button img {
+  display: block; /* 이미지를 블록 요소로 표시하여 여백을 없앰 */
+}
+
+.move-btn {
+  background: none;
+  border: none;
+}
+.move-btn img {
+  display: block;
+}
+
+/* Popup Modal Styles */
+.popup-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /*팝업의 정중앙을 기준으로 이동 */
+  /* display: flex; */
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  /* position: relative;
+  justify-content: center;
+  align-items: center; */
+  z-index: 1001;
+}
+
+.button-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* 버튼을 양 끝에 배치 */
+  margin-top: 60px; /* 버튼 그룹과 위의 요소 사이에 여백 추가 */
+}
+
+/* 버튼 스타일 */
+.cancel-btn,
+.save-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  flex: 0 1 auto; /* 버튼 크기를 자동으로 조절 */
+}
+
+.cancel-btn {
+  background-color: white;
+  border: #6c63ff 1px solid;
+  color: #6c63ff;
+}
+
+.save-btn {
+  background-color: #6c63ff;
+  color: white;
+}
+
+/*체크박스 완료시*/
+.todo-item.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.search-section {
+  margin-top: 70px;
+}
+
+.memo-categoty-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* 버튼을 양 끝에 배치 */
+  gap: 10px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center; /* 세로축 중앙 정렬 */
+  justify-content: center; /* 가로축 중앙 정렬 */
+}
+
+.header-container img {
+  margin-right: -15px; /*이미지와 제목 사이의 간격*/
+}

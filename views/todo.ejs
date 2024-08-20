@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TO DO LIST</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/../public/stylesheet/style.css"
+    />
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script defer src="../public/js/todo.js"></script>
+  </head>
+  <body>
+    <!-- Edit Popup Modal -->
+    <div id="editPopup" class="popup-modal" style="display: none">
+      <div class="popup-content">
+        <h2>TO DO EDIT</h2>
+        <form id="edit-form" action="" method="POST">
+          <input type="hidden" name="id" id="edit-id" value="" />
+          <input
+            type="text"
+            class="text-box"
+            name="content"
+            id="edit-content"
+            placeholder="Edit your todo"
+            value=""
+            required
+          />
+          <br />
+          <div class="button-group">
+            <button type="button" class="cancel-btn" onclick="closeEditPopup()">
+              CANCEL
+            </button>
+            <button type="submit" class="save-btn">SAVE</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Main Page -->
+    <div id="main-page">
+      <div class="header-container">
+        <img src="../public/images/todo3-1.png" alt="logo" width="100px" />
+        <h1 class="main-text">Todos</h1>
+      </div>
+      <br />
+      <section>
+        <div class="new-todo">
+          <h2>NEW TO DO</h2>
+          <form
+            id="todo-form"
+            class="form-box"
+            action="/todo/write"
+            method="POST"
+          >
+            <input
+              type="text"
+              class="text-box"
+              placeholder="Input your todo"
+              name="content"
+              required
+            />
+            <div class="memo-categoty-group">
+              <input
+                type="text"
+                class="text-box"
+                placeholder="Input memo"
+                name="memo"
+              />
+              <input
+                type="text"
+                class="text-box"
+                placeholder="select category"
+                name="category"
+              />
+            </div>
+            <br />
+            <button type="submit" class="add-btn">ADD</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="search-section">
+        <form
+          action=""
+          class="search-form"
+          onsubmit="searchTodo(); return false;"
+        >
+          <input
+            type="text"
+            placeholder="Search note"
+            id="search-input"
+            class="search-input"
+          />
+          <button type="submit" class="search-btn">Search</button>
+        </form>
+      </section>
+      <br />
+      <ul class="list-box" id="list-box">
+        <% var date = ""; var next_date = ""; todoTasks.forEach(tasks => { date
+        = (tasks.date).substring(0, 10); if(date != next_date){ next_date =
+        date; %>
+        <li class="date">
+          <div><%= date %></div>
+        </li>
+        <% } %>
+        <li class="todo-item" draggable="true" data-id="<%= tasks._id %>">
+          <button class="move-btn">
+            <img src="../public/images/dot-4.png" width="20px" alt="move" />
+          </button>
+          <input
+            type="checkbox"
+            class="todo-checkbox"
+            onclick="complete(this)"
+          />
+          <div class="todo-item-content" id="content">
+            &emsp;<%= tasks.content %> &emsp;
+          </div>
+          <div class="edit-btn">
+            <button
+              type="button"
+              id="img"
+              onclick="openEditPopup('<%= tasks._id %>', '<%= tasks.content %>')"
+            >
+              <img src="../public/images/edit.png" width="20px" alt="edit" />
+            </button>
+            <button
+              type="button"
+              id="img"
+              onclick="location.href='/todo/remove/<%= tasks._id %>'"
+            >
+              <img
+                src="../public/images/remove.png"
+                width="20px"
+                alt="remove"
+              />
+            </button>
+          </div>
+        </li>
+        <% }); %>
+      </ul>
+    </div>
+  </body>
+</html>
